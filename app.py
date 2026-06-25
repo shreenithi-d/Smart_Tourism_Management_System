@@ -159,7 +159,7 @@ DESTINATIONS = [
         "duration": "4 Days / 3 Nights",
         "rating": 4.9,
         "image_url":
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmLfXYpL9aUAGqW4IFPSK9_Q_1-HqEg0NABg&s",
+        "https://hblimg.mmtcdn.com/content/hubble/img/destimg/mmt/destination/m_Munnar_main_tv_destination_img_1_l_630_946.jpg",
         "description":
         "Munnar is a breathtaking destination famous for rolling tea plantations, misty mountains, waterfalls, and wildlife."
     },
