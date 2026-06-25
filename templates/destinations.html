@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block title %}Explore Destinations | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="hero-section"
+         style="background:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80') center center/cover no-repeat;">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <h1 class="fade-up">
+                Discover Extraordinary Destinations
+            </h1>
+
+            <p class="fade-up">
+                Explore breathtaking travel experiences across India and around
+                the world. Plan memorable journeys, save favorites, and book
+                your dream vacation with ease.
+            </p>
+
+            <a href="#destination-section"
+               class="hero-btn text-decoration-none">
+                Explore Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="destination-section" class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+                Popular Tourism Destinations
+            </h2>
+
+            <p class="section-subtitle">
+                Search and explore premium destinations including mountains,
+                beaches, cultural landmarks, wildlife experiences, and
+                international travel hotspots.
+            </p>
+
+        </div>
+
+        <!-- Search -->
+
+        <div class="search-box mb-5">
+
+            <input type="text"
+                   id="destinationSearch"
+                   class="form-control shadow-sm"
+                   placeholder="Search destinations, locations, or categories...">
+
+        </div>
+
+        <!-- Admin Add Button -->
+
+        {% if session.get('role') == 'admin' %}
+
+        <div class="text-end mb-4">
+
+            <a href="{{ url_for('destination_form') }}"
+               class="btn btn-tourism">
+                <i class="bi bi-plus-circle-fill me-2"></i>
+                Add Destination
+            </a>
+
+        </div>
+
+        {% endif %}
+
+        <!-- Destinations Grid -->
+
+        <div class="row g-4">
+
+            {% for destination in destinations %}
+
+            <div class="col-lg-4 col-md-6 destination-item">
+
+                <div class="card destination-card">
+
+                    <img src="{{ destination.image_url }}"
+                         alt="{{ destination.name }}"
+                         class="card-img-top">
+
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+
+                            <h5 class="card-title mb-0">
+                                {{ destination.name }}
+                            </h5>
+
+                            <span class="destination-rating">
+                                ★ {{ destination.rating }}
+                            </span>
+
+                        </div>
+
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            {{ destination.location }}
+                        </p>
+
+                        <p class="text-muted mb-3">
+                            {{ destination.category }}
+                            •
+                            {{ destination.duration }}
+                        </p>
+
+                        <p class="card-text">
+                            {{ destination.description[:120] }}...
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+
+                            <span class="destination-price">
+                                ₹{{ "{:,.0f}".format(destination.price) }}
+                            </span>
+
+                            <a href="{{ url_for('destination_details', destination_id=destination.id) }}"
+                               class="btn btn-tourism">
+                                View Details
+                            </a>
+
+                        </div>
+
+                        {% if session.get('role') == 'admin' %}
+
+                        <hr>
+
+                        <div class="d-flex gap-2">
+
+                            <a href="{{ url_for('edit_destination', destination_id=destination.id) }}"
+                               class="btn btn-warning btn-sm flex-fill">
+                                Edit
+                            </a>
+
+                            <a href="{{ url_for('delete_destination', destination_id=destination.id) }}"
+                               class="btn btn-danger btn-sm flex-fill"
+                               onclick="return confirm('Delete this destination?')">
+                                Delete
+                            </a>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <div class="col-12">
+
+                <div class="alert alert-info text-center">
+
+                    No destinations available at the moment.
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats-section">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-number counter"
+                         data-target="{{ destinations|length }}">
+                        {{ destinations|length }}
+                    </div>
+
+                    <div class="stat-title">
+                        Available Destinations
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-number counter"
+                         data-target="5000">
+                        5000
+                    </div>
+
+                    <div class="stat-title">
+                        Happy Travelers
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-number counter"
+                         data-target="150">
+                        150
+                    </div>
+
+                    <div class="stat-title">
+                        Travel Packages
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="stat-card">
+
+                    <div class="stat-number counter"
+                         data-target="98">
+                        98
+                    </div>
+
+                    <div class="stat-title">
+                        Satisfaction Rate %
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

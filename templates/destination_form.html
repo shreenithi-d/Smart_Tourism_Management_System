@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if destination %}
+Edit Destination
+{% else %}
+Add Destination
+{% endif %}
+| Smart Tourism Management System
+{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h1 class="section-title">
+                {% if destination %}
+                    Edit Tourism Destination
+                {% else %}
+                    Add New Tourism Destination
+                {% endif %}
+            </h1>
+
+            <p class="section-subtitle">
+                Manage premium travel destinations, packages, pricing,
+                descriptions, and tourism information.
+            </p>
+
+        </div>
+
+        <div class="form-container">
+
+            <form method="POST">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Destination Name
+                        </label>
+
+                        <input type="text"
+                               name="name"
+                               class="form-control"
+                               value="{{ destination.name if destination else '' }}"
+                               placeholder="Example: Ooty"
+                               required>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Location
+                        </label>
+
+                        <input type="text"
+                               name="location"
+                               class="form-control"
+                               value="{{ destination.location if destination else '' }}"
+                               placeholder="Tamil Nadu, India"
+                               required>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Category
+                        </label>
+
+                        <select name="category"
+                                class="form-select"
+                                required>
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Hill Station"
+                            {% if destination and destination.category == 'Hill Station' %}selected{% endif %}>
+                                Hill Station
+                            </option>
+
+                            <option value="Beach"
+                            {% if destination and destination.category == 'Beach' %}selected{% endif %}>
+                                Beach
+                            </option>
+
+                            <option value="Adventure"
+                            {% if destination and destination.category == 'Adventure' %}selected{% endif %}>
+                                Adventure
+                            </option>
+
+                            <option value="Cultural"
+                            {% if destination and destination.category == 'Cultural' %}selected{% endif %}>
+                                Cultural
+                            </option>
+
+                            <option value="Wildlife"
+                            {% if destination and destination.category == 'Wildlife' %}selected{% endif %}>
+                                Wildlife
+                            </option>
+
+                            <option value="International"
+                            {% if destination and destination.category == 'International' %}selected{% endif %}>
+                                International
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Package Price (₹)
+                        </label>
+
+                        <input type="number"
+                               step="0.01"
+                               min="0"
+                               name="price"
+                               class="form-control"
+                               value="{{ destination.price if destination else '' }}"
+                               placeholder="25000"
+                               required>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Duration
+                        </label>
+
+                        <input type="text"
+                               name="duration"
+                               class="form-control"
+                               value="{{ destination.duration if destination else '' }}"
+                               placeholder="5 Days / 4 Nights"
+                               required>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+                            Rating
+                        </label>
+
+                        <input type="number"
+                               step="0.1"
+                               min="1"
+                               max="5"
+                               name="rating"
+                               class="form-control"
+                               value="{{ destination.rating if destination else '4.5' }}"
+                               required>
+
+                    </div>
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            Image URL
+                        </label>
+
+                        <input type="url"
+                               name="image_url"
+                               class="form-control"
+                               value="{{ destination.image_url if destination else '' }}"
+                               placeholder="https://images.unsplash.com/..."
+                               required>
+
+                    </div>
+
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+                            Destination Description
+                        </label>
+
+                        <textarea name="description"
+                                  rows="8"
+                                  class="form-control"
+                                  placeholder="Provide a detailed tourism description..."
+                                  required>{% if destination %}{{ destination.description }}{% endif %}</textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-between mt-5">
+
+                    <a href="{{ url_for('destinations') }}"
+                       class="btn btn-secondary">
+                        Back
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-tourism">
+
+                        {% if destination %}
+                            Update Destination
+                        {% else %}
+                            Save Destination
+                        {% endif %}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

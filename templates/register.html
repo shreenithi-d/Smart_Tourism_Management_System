@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}Register | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="hero-section"
+         style="min-height:100vh;background:url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80') center center/cover no-repeat;">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container position-relative">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-6 col-md-8">
+
+                <div class="glass-light p-5 shadow-custom">
+
+                    <div class="text-center mb-4">
+
+                        <h2 class="fw-bold">
+                            Create Your Travel Account
+                        </h2>
+
+                        <p class="text-muted">
+                            Join Smart Tourism and start exploring breathtaking
+                            destinations, manage bookings, and save your dream trips.
+                        </p>
+
+                    </div>
+
+                    <form method="POST" action="{{ url_for('register') }}">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="name"
+                                class="form-control"
+                                placeholder="Enter your full name"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="Enter your email"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Create a secure password"
+                                minlength="6"
+                                required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                Confirm Password
+                            </label>
+
+                            <input
+                                type="password"
+                                name="confirm_password"
+                                class="form-control"
+                                placeholder="Confirm your password"
+                                minlength="6"
+                                required>
+                        </div>
+
+                        <div class="d-grid">
+
+                            <button type="submit"
+                                    class="btn btn-tourism">
+                                <i class="bi bi-person-plus-fill me-2"></i>
+                                Create Account
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                    <hr class="my-4">
+
+                    <div class="text-center">
+
+                        <p class="mb-0">
+                            Already have an account?
+
+                            <a href="{{ url_for('login') }}"
+                               class="fw-bold text-decoration-none">
+                                Login Here
+                            </a>
+                        </p>
+
+                    </div>
+
+                    <div class="mt-4">
+
+                        <div class="row text-center">
+
+                            <div class="col-4">
+                                <i class="bi bi-globe-americas fs-3 text-primary"></i>
+                                <p class="small mt-2 mb-0">Global Tours</p>
+                            </div>
+
+                            <div class="col-4">
+                                <i class="bi bi-heart-fill fs-3 text-danger"></i>
+                                <p class="small mt-2 mb-0">Favorites</p>
+                            </div>
+
+                            <div class="col-4">
+                                <i class="bi bi-calendar-check-fill fs-3 text-success"></i>
+                                <p class="small mt-2 mb-0">Easy Booking</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

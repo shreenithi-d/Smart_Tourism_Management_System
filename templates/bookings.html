@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Management | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="py-5 bg-gradient-tourism text-white">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+                    Booking Management
+                </h1>
+
+                <p class="lead mb-0">
+                    Monitor all traveler reservations, booking activity,
+                    package selections, and tourism revenue.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <span class="badge bg-light text-dark p-3 fs-6">
+                    Total Bookings: {{ bookings|length }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="table-container">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h3 class="fw-bold mb-0">
+                    All Bookings
+                </h3>
+
+                <a href="{{ url_for('analytics') }}"
+                   class="btn btn-tourism">
+                    View Analytics
+                </a>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+                            <th>#</th>
+                            <th>Traveler</th>
+                            <th>Email</th>
+                            <th>Destination</th>
+                            <th>Travel Date</th>
+                            <th>People</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for booking in bookings %}
+
+                        <tr>
+
+                            <td>
+                                #{{ booking.id }}
+                            </td>
+
+                            <td>
+                                {{ booking.user.name }}
+                            </td>
+
+                            <td>
+                                {{ booking.user.email }}
+                            </td>
+
+                            <td>
+                                {{ booking.destination.name }}
+                            </td>
+
+                            <td>
+                                {{ booking.travel_date }}
+                            </td>
+
+                            <td>
+                                {{ booking.people }}
+                            </td>
+
+                            <td class="fw-bold text-success">
+                                ₹{{ "{:,.0f}".format(booking.total_price) }}
+                            </td>
+
+                            <td>
+
+                                {% if booking.status == "Confirmed" %}
+
+                                <span class="badge bg-success">
+                                    {{ booking.status }}
+                                </span>
+
+                                {% elif booking.status == "Pending" %}
+
+                                <span class="badge bg-warning text-dark">
+                                    {{ booking.status }}
+                                </span>
+
+                                {% else %}
+
+                                <span class="badge bg-secondary">
+                                    {{ booking.status }}
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="8" class="text-center py-5">
+
+                                <div>
+
+                                    <i class="bi bi-calendar-x fs-1 text-muted"></i>
+
+                                    <h5 class="mt-3">
+                                        No Bookings Available
+                                    </h5>
+
+                                    <p class="text-muted mb-0">
+                                        Traveler bookings will appear here.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

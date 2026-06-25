@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}My Favorites | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="py-5 bg-gradient-tourism text-white">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+                    My Favorite Destinations
+                </h1>
+
+                <p class="lead mb-0">
+                    Access your saved wishlist destinations and quickly
+                    continue planning your next travel adventure.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <a href="{{ url_for('destinations') }}"
+                   class="btn btn-light rounded-pill px-4">
+                    Explore More
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        {% if favorites %}
+
+        <div class="row g-4">
+
+            {% for favorite in favorites %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="card favorite-card h-100">
+
+                    <img src="{{ favorite.destination.image_url }}"
+                         alt="{{ favorite.destination.name }}"
+                         class="card-img-top"
+                         style="height:250px;object-fit:cover;">
+
+                    <div class="card-body">
+
+                        <h5 class="fw-bold">
+                            {{ favorite.destination.name }}
+                        </h5>
+
+                        <p class="text-muted mb-2">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            {{ favorite.destination.location }}
+                        </p>
+
+                        <p class="text-muted">
+                            {{ favorite.destination.category }}
+                            •
+                            {{ favorite.destination.duration }}
+                        </p>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+                            <span class="destination-price">
+                                ₹{{ "{:,.0f}".format(favorite.destination.price) }}
+                            </span>
+
+                            <span class="destination-rating">
+                                ★ {{ favorite.destination.rating }}
+                            </span>
+
+                        </div>
+
+                        <div class="d-grid gap-2">
+
+                            <a href="{{ url_for('destination_details', destination_id=favorite.destination.id) }}"
+                               class="btn btn-tourism">
+                                Quick Booking
+                            </a>
+
+                            <a href="{{ url_for('remove_favorite', destination_id=favorite.destination.id) }}"
+                               class="btn btn-outline-danger"
+                               onclick="return confirm('Remove from favorites?')">
+                                Remove Favorite
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="analytics-box text-center py-5">
+
+            <i class="bi bi-heart fs-1 text-danger"></i>
+
+            <h3 class="mt-3">
+                No Favorite Destinations
+            </h3>
+
+            <p class="text-muted">
+                Save destinations you love and build your travel wishlist.
+            </p>
+
+            <a href="{{ url_for('destinations') }}"
+               class="btn btn-tourism mt-2">
+                Browse Destinations
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

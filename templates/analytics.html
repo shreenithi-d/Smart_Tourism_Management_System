@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block title %}Tourism Analytics | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="py-5 bg-gradient-tourism text-white">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+                    Tourism Analytics Dashboard
+                </h1>
+
+                <p class="lead mb-0">
+                    Analyze destination performance, traveler engagement,
+                    bookings, and tourism revenue through actionable insights.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <a href="{{ url_for('admin_dashboard') }}"
+                   class="btn btn-light rounded-pill px-4">
+                    Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <!-- Statistics -->
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-primary">
+
+                    <div class="card-body">
+
+                        <h6>Total Destinations</h6>
+
+                        <div class="dashboard-number counter"
+                             data-target="{{ total_destinations }}">
+                            {{ total_destinations }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-success">
+
+                    <div class="card-body">
+
+                        <h6>Total Travelers</h6>
+
+                        <div class="dashboard-number counter"
+                             data-target="{{ total_travelers }}">
+                            {{ total_travelers }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-warning">
+
+                    <div class="card-body">
+
+                        <h6>Total Bookings</h6>
+
+                        <div class="dashboard-number counter"
+                             data-target="{{ total_bookings }}">
+                            {{ total_bookings }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-danger">
+
+                    <div class="card-body">
+
+                        <h6>Total Revenue</h6>
+
+                        <div class="dashboard-number">
+                            ₹{{ "{:,.0f}".format(total_revenue or 0) }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Insights -->
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-lg-6">
+
+                <div class="analytics-box h-100">
+
+                    <h4 class="fw-bold mb-4">
+                        Most Popular Destination
+                    </h4>
+
+                    {% if most_popular_destination %}
+
+                    <div class="d-flex align-items-center">
+
+                        <img src="{{ most_popular_destination.image_url }}"
+                             alt="{{ most_popular_destination.name }}"
+                             style="width:120px;height:90px;object-fit:cover;border-radius:15px;">
+
+                        <div class="ms-3">
+
+                            <h5 class="mb-1">
+                                {{ most_popular_destination.name }}
+                            </h5>
+
+                            <p class="text-muted mb-1">
+                                {{ most_popular_destination.location }}
+                            </p>
+
+                            <span class="badge bg-success">
+                                Top Performing Destination
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    {% else %}
+
+                    <p class="text-muted mb-0">
+                        No booking data available yet.
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="analytics-box h-100">
+
+                    <h4 class="fw-bold mb-4">
+                        Platform Overview
+                    </h4>
+
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Destinations Available</span>
+                            <strong>{{ total_destinations }}</strong>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Registered Travelers</span>
+                            <strong>{{ total_travelers }}</strong>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Completed Bookings</span>
+                            <strong>{{ total_bookings }}</strong>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total Revenue</span>
+                            <strong>₹{{ "{:,.0f}".format(total_revenue or 0) }}</strong>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Chart Ready Sections -->
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-lg-6">
+
+                <div class="analytics-box">
+
+                    <h4 class="fw-bold mb-3">
+                        Booking Trends
+                    </h4>
+
+                    <div class="chart-placeholder">
+                        Chart Integration Ready
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="analytics-box">
+
+                    <h4 class="fw-bold mb-3">
+                        Revenue Analytics
+                    </h4>
+
+                    <div class="chart-placeholder">
+                        Chart Integration Ready
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Recent Bookings -->
+
+        <div class="analytics-box">
+
+            <h4 class="fw-bold mb-4">
+                Recent Bookings
+            </h4>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Traveler</th>
+                            <th>Destination</th>
+                            <th>Travel Date</th>
+                            <th>People</th>
+                            <th>Revenue</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for booking in recent_bookings %}
+
+                        <tr>
+
+                            <td>#{{ booking.id }}</td>
+
+                            <td>
+                                {{ booking.user.name }}
+                            </td>
+
+                            <td>
+                                {{ booking.destination.name }}
+                            </td>
+
+                            <td>
+                                {{ booking.travel_date }}
+                            </td>
+
+                            <td>
+                                {{ booking.people }}
+                            </td>
+
+                            <td class="text-success fw-bold">
+                                ₹{{ "{:,.0f}".format(booking.total_price) }}
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="6" class="text-center py-4">
+
+                                No recent bookings available.
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

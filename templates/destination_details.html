@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ destination.name }} | Smart Tourism
+{% endblock %}
+
+{% block content %}
+
+<!-- ==========================================
+     DESTINATION DETAILS HERO
+========================================== -->
+
+<section class="container py-5">
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <img src="{{ destination.image_url }}"
+                 alt="{{ destination.name }}"
+                 class="destination-banner shadow">
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     DESTINATION INFORMATION
+========================================== -->
+
+<section class="container pb-5">
+
+    <div class="row g-4">
+
+        <!-- LEFT CONTENT -->
+
+        <div class="col-lg-8">
+
+            <div class="details-card">
+
+                <div class="d-flex justify-content-between align-items-start flex-wrap mb-3">
+
+                    <div>
+
+                        <h1 class="fw-bold mb-2">
+                            {{ destination.name }}
+                        </h1>
+
+                        <p class="text-muted mb-0">
+
+                            <i class="bi bi-geo-alt-fill text-danger"></i>
+
+                            {{ destination.location }}
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <span class="badge bg-warning text-dark fs-6">
+
+                            ⭐ {{ destination.rating }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="mb-4">
+
+                    <span class="info-badge">
+                        {{ destination.category }}
+                    </span>
+
+                    <span class="info-badge">
+                        {{ destination.duration }}
+                    </span>
+
+                </div>
+
+                <h4 class="fw-bold mb-3">
+                    About This Destination
+                </h4>
+
+                <p class="lead">
+
+                    {{ destination.description }}
+
+                </p>
+
+                <div class="row mt-4">
+
+                    <div class="col-md-6">
+
+                        <div class="card border-0 shadow-sm h-100">
+
+                            <div class="card-body">
+
+                                <h5 class="fw-bold">
+                                    <i class="bi bi-airplane-fill text-primary"></i>
+                                    Travel Experience
+                                </h5>
+
+                                <p class="mb-0">
+                                    Enjoy a carefully planned tourism experience with comfortable accommodations, local attractions, guided activities, and unforgettable memories.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="card border-0 shadow-sm h-100">
+
+                            <div class="card-body">
+
+                                <h5 class="fw-bold">
+                                    <i class="bi bi-shield-check text-success"></i>
+                                    Safe & Reliable
+                                </h5>
+
+                                <p class="mb-0">
+                                    Verified destination packages with secure booking management and traveler support throughout your journey.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+
+        <div class="col-lg-4">
+
+            <div class="booking-box">
+
+                <h4 class="mb-3">
+
+                    Book This Trip
+
+                </h4>
+
+                <h2 class="text-success fw-bold mb-3">
+
+                    ₹{{ "{:,.0f}".format(destination.price) }}
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Per Person
+
+                </p>
+
+                <hr>
+
+                {% if session.get('user_id') %}
+
+                <form method="POST"
+                      action="{{ url_for('destination_details', destination_id=destination.id) }}">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Travel Date
+
+                        </label>
+
+                        <input type="date"
+                               name="travel_date"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Number of Travelers
+
+                        </label>
+
+                        <input type="number"
+                               name="people"
+                               min="1"
+                               value="1"
+                               class="form-control"
+                               required>
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-tourism w-100">
+
+                        <i class="bi bi-calendar-check-fill"></i>
+
+                        Book Now
+
+                    </button>
+
+                </form>
+
+                <div class="mt-3">
+
+                    {% if favorite_exists %}
+
+                    <a href="{{ url_for('remove_favorite', destination_id=destination.id) }}"
+                       class="btn btn-outline-danger w-100">
+
+                        <i class="bi bi-heart-fill"></i>
+
+                        Remove From Favorites
+
+                    </a>
+
+                    {% else %}
+
+                    <a href="{{ url_for('add_favorite', destination_id=destination.id) }}"
+                       class="btn btn-outline-primary w-100">
+
+                        <i class="bi bi-heart"></i>
+
+                        Add To Favorites
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                {% else %}
+
+                <div class="alert alert-info">
+
+                    Login to book trips and save favorites.
+
+                </div>
+
+                <a href="{{ url_for('login') }}"
+                   class="btn btn-tourism w-100">
+
+                    Login To Continue
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+            <!-- QUICK INFO -->
+
+            <div class="details-card mt-4">
+
+                <h5 class="fw-bold mb-3">
+
+                    Package Highlights
+
+                </h5>
+
+                <ul class="list-group list-group-flush">
+
+                    <li class="list-group-item">
+                        ✓ Premium Travel Experience
+                    </li>
+
+                    <li class="list-group-item">
+                        ✓ Comfortable Accommodation
+                    </li>
+
+                    <li class="list-group-item">
+                        ✓ Tourist Attractions Covered
+                    </li>
+
+                    <li class="list-group-item">
+                        ✓ Local Cultural Experience
+                    </li>
+
+                    <li class="list-group-item">
+                        ✓ 24/7 Travel Assistance
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     RELATED DESTINATION CTA
+========================================== -->
+
+<section class="py-5 bg-light">
+
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-3">
+
+            Explore More Amazing Destinations
+
+        </h2>
+
+        <p class="text-muted mb-4">
+
+            Discover breathtaking locations and unforgettable travel experiences around the world.
+
+        </p>
+
+        <a href="{{ url_for('destinations') }}"
+           class="btn btn-tourism btn-lg">
+
+            View All Destinations
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

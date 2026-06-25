@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="py-5 bg-gradient-tourism text-white">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+                <h1 class="fw-bold mb-3">
+                    Tourism Administration Dashboard
+                </h1>
+
+                <p class="lead mb-0">
+                    Manage destinations, travelers, bookings, and tourism
+                    analytics from a centralized control panel.
+                </p>
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+
+                <a href="{{ url_for('destination_form') }}"
+                   class="btn btn-light rounded-pill px-4">
+                    <i class="bi bi-plus-circle-fill me-2"></i>
+                    Add Destination
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <!-- Statistics -->
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-primary">
+                    <div class="card-body">
+
+                        <h6>Total Destinations</h6>
+
+                        <div class="dashboard-number counter"
+                             data-target="{{ total_destinations }}">
+                            {{ total_destinations }}
+                        </div>
+
+                        <p class="mb-0">
+                            Active tourism packages
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-success">
+                    <div class="card-body">
+
+                        <h6>Total Travelers</h6>
+
+                        <div class="dashboard-number counter"
+                             data-target="{{ total_travelers }}">
+                            {{ total_travelers }}
+                        </div>
+
+                        <p class="mb-0">
+                            Registered users
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-warning">
+                    <div class="card-body">
+
+                        <h6>Total Bookings</h6>
+
+                        <div class="dashboard-number counter"
+                             data-target="{{ total_bookings }}">
+                            {{ total_bookings }}
+                        </div>
+
+                        <p class="mb-0">
+                            Confirmed trips
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="card dashboard-card dashboard-danger">
+                    <div class="card-body">
+
+                        <h6>Total Revenue</h6>
+
+                        <div class="dashboard-number">
+                            ₹{{ "{:,.0f}".format(total_revenue or 0) }}
+                        </div>
+
+                        <p class="mb-0">
+                            Tourism earnings
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Quick Actions -->
+
+        <div class="row g-4 mb-5">
+
+            <div class="col-lg-3 col-md-6">
+                <a href="{{ url_for('destinations') }}"
+                   class="text-decoration-none">
+
+                    <div class="analytics-box text-center">
+
+                        <i class="bi bi-geo-alt-fill fs-1 text-primary"></i>
+
+                        <h5 class="mt-3">
+                            Destinations
+                        </h5>
+
+                        <p class="text-muted mb-0">
+                            Manage travel destinations
+                        </p>
+
+                    </div>
+
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <a href="{{ url_for('travelers') }}"
+                   class="text-decoration-none">
+
+                    <div class="analytics-box text-center">
+
+                        <i class="bi bi-people-fill fs-1 text-success"></i>
+
+                        <h5 class="mt-3">
+                            Travelers
+                        </h5>
+
+                        <p class="text-muted mb-0">
+                            View registered users
+                        </p>
+
+                    </div>
+
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <a href="{{ url_for('bookings') }}"
+                   class="text-decoration-none">
+
+                    <div class="analytics-box text-center">
+
+                        <i class="bi bi-calendar-check-fill fs-1 text-warning"></i>
+
+                        <h5 class="mt-3">
+                            Bookings
+                        </h5>
+
+                        <p class="text-muted mb-0">
+                            Manage trip reservations
+                        </p>
+
+                    </div>
+
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <a href="{{ url_for('analytics') }}"
+                   class="text-decoration-none">
+
+                    <div class="analytics-box text-center">
+
+                        <i class="bi bi-bar-chart-fill fs-1 text-danger"></i>
+
+                        <h5 class="mt-3">
+                            Analytics
+                        </h5>
+
+                        <p class="text-muted mb-0">
+                            Tourism insights
+                        </p>
+
+                    </div>
+
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Recent Bookings -->
+
+        <div class="analytics-box">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h4 class="fw-bold mb-0">
+                    Recent Bookings
+                </h4>
+
+                <a href="{{ url_for('bookings') }}"
+                   class="btn btn-tourism">
+                    View All
+                </a>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Traveler</th>
+                            <th>Destination</th>
+                            <th>Date</th>
+                            <th>People</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for booking in recent_bookings %}
+
+                        <tr>
+
+                            <td>#{{ booking.id }}</td>
+
+                            <td>
+                                {{ booking.user.name }}
+                            </td>
+
+                            <td>
+                                {{ booking.destination.name }}
+                            </td>
+
+                            <td>
+                                {{ booking.travel_date }}
+                            </td>
+
+                            <td>
+                                {{ booking.people }}
+                            </td>
+
+                            <td>
+                                <span class="badge bg-success">
+                                    {{ booking.status }}
+                                </span>
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                No bookings available.
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

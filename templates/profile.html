@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="py-5 bg-gradient-tourism text-white">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+                    My Profile
+                </h1>
+
+                <p class="lead mb-0">
+                    Manage your personal information and keep your traveler
+                    profile up to date.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <a href="{{ url_for('user_dashboard') }}"
+                   class="btn btn-light rounded-pill px-4">
+                    Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row g-4 justify-content-center">
+
+            <!-- Profile Card -->
+
+            <div class="col-lg-4">
+
+                <div class="profile-card">
+
+                    <img src="https://ui-avatars.com/api/?name={{ user.name|replace(' ','+') }}&background=0ea5e9&color=ffffff&size=256"
+                         alt="{{ user.name }}"
+                         class="profile-avatar">
+
+                    <h3 class="fw-bold">
+                        {{ user.name }}
+                    </h3>
+
+                    <p class="text-muted">
+                        {{ user.email }}
+                    </p>
+
+                    <span class="badge bg-primary fs-6">
+                        Traveler
+                    </span>
+
+                    <hr>
+
+                    <div class="text-start">
+
+                        <p>
+                            <strong>User ID:</strong>
+                            {{ user.id }}
+                        </p>
+
+                        <p>
+                            <strong>Member Since:</strong>
+                            {{ user.created_at.strftime('%d %B %Y') if user.created_at else '-' }}
+                        </p>
+
+                        <p class="mb-0">
+                            <strong>Account Type:</strong>
+                            Traveler
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Update Form -->
+
+            <div class="col-lg-8">
+
+                <div class="form-container">
+
+                    <h3 class="fw-bold mb-4">
+                        Update Profile Information
+                    </h3>
+
+                    <form method="POST"
+                          action="{{ url_for('profile') }}">
+
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+                                    Full Name
+                                </label>
+
+                                <input type="text"
+                                       name="name"
+                                       class="form-control"
+                                       value="{{ user.name }}"
+                                       required>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label fw-semibold">
+                                    Email Address
+                                </label>
+
+                                <input type="email"
+                                       name="email"
+                                       class="form-control"
+                                       value="{{ user.email }}"
+                                       required>
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <label class="form-label fw-semibold">
+                                    New Password
+                                </label>
+
+                                <input type="password"
+                                       name="password"
+                                       class="form-control"
+                                       placeholder="Leave blank to keep current password">
+
+                                <small class="text-muted">
+                                    Update only if you want to change your password.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-4">
+
+                            <button type="submit"
+                                    class="btn btn-tourism">
+                                Update Profile
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

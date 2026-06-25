@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Travelers | Smart Tourism Management System{% endblock %}
+
+{% block content %}
+
+<section class="py-5 bg-gradient-tourism text-white">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-8">
+
+                <h1 class="fw-bold">
+                    Traveler Management
+                </h1>
+
+                <p class="lead mb-0">
+                    View registered travelers, explore their profiles,
+                    and monitor tourism platform engagement.
+                </p>
+
+            </div>
+
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+
+                <span class="badge bg-light text-dark p-3 fs-6">
+                    Total Travelers: {{ travelers|length }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="table-container">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <h3 class="fw-bold mb-0">
+                    Registered Travelers
+                </h3>
+
+                <a href="{{ url_for('admin_dashboard') }}"
+                   class="btn btn-tourism">
+                    Dashboard
+                </a>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Joined</th>
+                            <th>Profile</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for traveler in travelers %}
+
+                        <tr>
+
+                            <td>
+                                {{ traveler.id }}
+                            </td>
+
+                            <td>
+                                {{ traveler.name }}
+                            </td>
+
+                            <td>
+                                {{ traveler.email }}
+                            </td>
+
+                            <td>
+
+                                {% if traveler.role == "admin" %}
+
+                                <span class="badge bg-danger">
+                                    Admin
+                                </span>
+
+                                {% else %}
+
+                                <span class="badge bg-primary">
+                                    Traveler
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+                                {{ traveler.created_at.strftime('%d %b %Y') if traveler.created_at else '-' }}
+                            </td>
+
+                            <td>
+
+                                <a href="{{ url_for('traveler_profile', user_id=traveler.id) }}"
+                                   class="btn btn-sm btn-tourism">
+                                    View Profile
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% else %}
+
+                        <tr>
+
+                            <td colspan="6" class="text-center py-5">
+
+                                <i class="bi bi-people fs-1 text-muted"></i>
+
+                                <h5 class="mt-3">
+                                    No Travelers Found
+                                </h5>
+
+                                <p class="text-muted mb-0">
+                                    Registered users will appear here.
+                                </p>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
