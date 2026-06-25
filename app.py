@@ -211,7 +211,7 @@ DESTINATIONS = [
         "duration": "5 Days / 4 Nights",
         "rating": 4.9,
         "image_url":
-        "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTOSP96EGJtX5bQ9-PMlh5QWBDxEoqG3LNdLjfKRqaIm54Z41E62SeBvdiVYTwEleNEokvL53KJsqWt5B6J9iqnorI&s=19",
+        "https://tripstorz.com/_astro/houses-surrounded-by-green-trees-in-manali-during-daytime.DAktkgeM_1Vbxjy.avif",
         "description":
         "Manali is renowned for snow-capped mountains, adventure sports, trekking routes, and picturesque valleys."
     },
