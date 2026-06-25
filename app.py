@@ -139,161 +139,136 @@ def current_user():
 DESTINATIONS = [
 
     {
-        "name": "Ooty",
-        "location": "Tamil Nadu, India",
-        "category": "Hill Station",
-        "price": 12000,
-        "duration": "3 Days / 2 Nights",
-        "rating": 4.8,
-        "image_url":
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-        "description":
-        "Ooty is one of India's most famous hill stations known for tea gardens, cool weather, lakes, botanical gardens, and scenic mountain views."
-    },
+    "name": "Ooty",
+    "location": "Nilgiris District, Tamil Nadu, India",
+    "category": "Hill Station",
+    "price": 12500,
+    "duration": "3 Days / 2 Nights",
+    "rating": 4.8,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Ooty_lake.jpg",
+    "description": "Ooty, officially known as Udhagamandalam, is a picturesque hill station in the Nilgiri Hills of Tamil Nadu. Famous for Ooty Lake, Botanical Gardens, Doddabetta Peak, Nilgiri Mountain Railway, and extensive tea plantations, it attracts visitors seeking cool weather, scenic landscapes, and colonial charm throughout the year."
+},
 
-    {
-        "name": "Munnar",
-        "location": "Kerala, India",
-        "category": "Nature",
-        "price": 14000,
-        "duration": "4 Days / 3 Nights",
-        "rating": 4.9,
-        "image_url":
-        "https://hblimg.mmtcdn.com/content/hubble/img/destimg/mmt/destination/m_Munnar_main_tv_destination_img_1_l_630_946.jpg",
-        "description":
-        "Munnar is a breathtaking destination famous for rolling tea plantations, misty mountains, waterfalls, and wildlife."
-    },
+{
+    "name": "Munnar",
+    "location": "Idukki District, Kerala, India",
+    "category": "Nature & Tea Tourism",
+    "price": 14500,
+    "duration": "4 Days / 3 Nights",
+    "rating": 4.9,
+    "image_url": "https://hblimg.mmtcdn.com/content/hubble/img/destimg/mmt/destination/m_Munnar_main_tv_destination_img_1_l_630_946.jpg",
+    "description": "Munnar is Kerala's most celebrated hill destination, renowned for its endless tea gardens, Eravikulam National Park, Anamudi Peak, Mattupetty Dam, and mist-covered valleys. The region offers breathtaking viewpoints, wildlife experiences, and a pleasant climate ideal for nature lovers."
+},
 
-    {
-        "name": "Kodaikanal",
-        "location": "Tamil Nadu, India",
-        "category": "Hill Station",
-        "price": 11000,
-        "duration": "3 Days / 2 Nights",
-        "rating": 4.7,
-        "image_url":
-        "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
-        "description":
-        "Kodaikanal offers serene lakes, pine forests, valleys, waterfalls, and pleasant weather throughout the year."
-    },
+{
+    "name": "Kodaikanal",
+    "location": "Dindigul District, Tamil Nadu, India",
+    "category": "Hill Station",
+    "price": 11500,
+    "duration": "3 Days / 2 Nights",
+    "rating": 4.7,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Kodaikanal_Lake.jpg",
+    "description": "Kodaikanal, often called the Princess of Hill Stations, is known for Kodaikanal Lake, Coaker's Walk, Pillar Rocks, Bryant Park, and dense pine forests. The destination offers a tranquil atmosphere, cool climate, and stunning valley views."
+},
 
-    {
-        "name": "Goa",
-        "location": "Goa, India",
-        "category": "Beach",
-        "price": 18000,
-        "duration": "5 Days / 4 Nights",
-        "rating": 4.8,
-        "image_url":
-        "https://images.unsplash.com/photo-1519046904884-53103b34b206",
-        "description":
-        "Goa is India's beach paradise featuring nightlife, water sports, heritage churches, seafood, and vibrant culture."
-    },
+{
+    "name": "Goa",
+    "location": "Goa, India",
+    "category": "Beach Tourism",
+    "price": 18500,
+    "duration": "5 Days / 4 Nights",
+    "rating": 4.8,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/Palolem_Beach_Goa.jpg",
+    "description": "Goa is India's premier beach destination, famous for Baga Beach, Calangute Beach, Palolem Beach, Portuguese architecture, vibrant nightlife, water sports, seafood cuisine, and cultural festivals attracting tourists from around the world."
+},
 
-    {
-        "name": "Jaipur",
-        "location": "Rajasthan, India",
-        "category": "Heritage",
-        "price": 15000,
-        "duration": "4 Days / 3 Nights",
-        "rating": 4.7,
-        "image_url":
-        "https://s7ap1.scene7.com/is/image/incredibleindia/jal-mahal-jaipur-rajasthan-1-attr-hero?qlt=82&ts=1742162446740",
-        "description":
-        "Jaipur, the Pink City, showcases magnificent forts, palaces, royal heritage, colorful markets, and rich traditions."
-    },
+{
+    "name": "Jaipur",
+    "location": "Rajasthan, India",
+    "category": "Heritage Tourism",
+    "price": 15500,
+    "duration": "4 Days / 3 Nights",
+    "rating": 4.8,
+    "image_url": "https://s7ap1.scene7.com/is/image/incredibleindia/jal-mahal-jaipur-rajasthan-1-attr-hero?qlt=82&ts=1742162446740",
+    "description": "Jaipur, the capital of Rajasthan, is known as the Pink City and is home to Amber Fort, City Palace, Hawa Mahal, Jal Mahal, and Jantar Mantar. It showcases India's royal heritage, architecture, and traditional arts."
+},
 
-    {
-        "name": "Manali",
-        "location": "Himachal Pradesh, India",
-        "category": "Adventure",
-        "price": 17000,
-        "duration": "5 Days / 4 Nights",
-        "rating": 4.9,
-        "image_url":
-        "https://tripstorz.com/_astro/houses-surrounded-by-green-trees-in-manali-during-daytime.DAktkgeM_1Vbxjy.avif",
-        "description":
-        "Manali is renowned for snow-capped mountains, adventure sports, trekking routes, and picturesque valleys."
-    },
+{
+    "name": "Manali",
+    "location": "Kullu District, Himachal Pradesh, India",
+    "category": "Adventure Tourism",
+    "price": 17500,
+    "duration": "5 Days / 4 Nights",
+    "rating": 4.9,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Manali_Himachal_Pradesh.jpg",
+    "description": "Manali is a renowned Himalayan destination offering snow-covered mountains, Solang Valley adventures, Rohtang Pass excursions, trekking, paragliding, river rafting, and spectacular alpine scenery."
+},
 
-    {
-        "name": "Kashmir",
-        "location": "Jammu & Kashmir, India",
-        "category": "Nature",
-        "price": 22000,
-        "duration": "6 Days / 5 Nights",
-        "rating": 5.0,
-        "image_url":
-        "https://images.unsplash.com/photo-1501785888041-af3ef285b470",
-        "description":
-        "Kashmir is known as Paradise on Earth with pristine lakes, snow peaks, gardens, and breathtaking landscapes."
-    },
+{
+    "name": "Kashmir",
+    "location": "Jammu & Kashmir, India",
+    "category": "Nature Tourism",
+    "price": 22500,
+    "duration": "6 Days / 5 Nights",
+    "rating": 5.0,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Dal_Lake_Srinagar.jpg",
+    "description": "Kashmir is often referred to as Paradise on Earth. Major attractions include Dal Lake, Gulmarg, Pahalgam, Sonamarg, Mughal Gardens, and snow-covered Himalayan landscapes that offer year-round tourism opportunities."
+},
 
-    {
-        "name": "Andaman Islands",
-        "location": "Andaman & Nicobar, India",
-        "category": "Island",
-        "price": 28000,
-        "duration": "6 Days / 5 Nights",
-        "rating": 4.9,
-        "image_url":
-        "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
-        "description":
-        "Andaman offers turquoise waters, coral reefs, scuba diving, beaches, and tropical island adventures."
-    },
+{
+    "name": "Andaman Islands",
+    "location": "Andaman & Nicobar Islands, India",
+    "category": "Island Tourism",
+    "price": 28500,
+    "duration": "6 Days / 5 Nights",
+    "rating": 4.9,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Radhanagar_Beach_Havelock.jpg",
+    "description": "The Andaman Islands are famous for crystal-clear waters, Radhanagar Beach, scuba diving, snorkeling, coral reefs, marine biodiversity, and tropical island experiences that rank among India's best beach destinations."
+},
 
-    {
-        "name": "Dubai",
-        "location": "United Arab Emirates",
-        "category": "Luxury",
-        "price": 65000,
-        "duration": "5 Days / 4 Nights",
-        "rating": 4.9,
-        "image_url":
-        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
-        "description":
-        "Dubai features luxury shopping, iconic skyscrapers, desert safaris, beaches, and world-class entertainment."
-    },
+{
+    "name": "Dubai",
+    "location": "United Arab Emirates",
+    "category": "Luxury Tourism",
+    "price": 65000,
+    "duration": "5 Days / 4 Nights",
+    "rating": 4.9,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Dubai_skyline.jpg",
+    "description": "Dubai is a global tourism hub featuring Burj Khalifa, Palm Jumeirah, Dubai Mall, luxury resorts, desert safaris, world-class shopping, modern architecture, and entertainment attractions."
+},
 
-    {
-        "name": "Bali",
-        "location": "Indonesia",
-        "category": "Beach",
-        "price": 55000,
-        "duration": "6 Days / 5 Nights",
-        "rating": 4.9,
-        "image_url":
-        "https://images.unsplash.com/photo-1537996194471-e657df975ab4",
-        "description":
-        "Bali is famous for temples, beaches, rice terraces, luxury resorts, and tropical beauty."
-    },
+{
+    "name": "Bali",
+    "location": "Indonesia",
+    "category": "Beach & Cultural Tourism",
+    "price": 55000,
+    "duration": "6 Days / 5 Nights",
+    "rating": 4.9,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Pura_Ulun_Danu_Bratan.jpg",
+    "description": "Bali is internationally known for its beaches, ancient temples, rice terraces, volcanoes, luxury resorts, cultural traditions, and vibrant tourism experiences that attract millions of visitors annually."
+},
 
-    {
-        "name": "Singapore",
-        "location": "Singapore",
-        "category": "City",
-        "price": 70000,
-        "duration": "5 Days / 4 Nights",
-        "rating": 4.8,
-        "image_url":
-        "https://images.unsplash.com/photo-1525625293386-3f8f99389edd",
-        "description":
-        "Singapore offers futuristic attractions, Marina Bay Sands, Gardens by the Bay, and vibrant urban experiences."
-    },
+{
+    "name": "Singapore",
+    "location": "Singapore",
+    "category": "Urban Tourism",
+    "price": 70000,
+    "duration": "5 Days / 4 Nights",
+    "rating": 4.8,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/Marina_Bay_Sands_and_Gardens_by_the_Bay.jpg",
+    "description": "Singapore is a world-class city destination featuring Marina Bay Sands, Gardens by the Bay, Sentosa Island, Universal Studios Singapore, cultural districts, and advanced urban infrastructure."
+},
 
-    {
-        "name": "Switzerland",
-        "location": "Europe",
-        "category": "Luxury",
-        "price": 125000,
-        "duration": "7 Days / 6 Nights",
-        "rating": 5.0,
-        "image_url":
-        "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429",
-        "description":
-        "Switzerland is known for alpine scenery, luxury tourism, skiing, lakes, and charming mountain villages."
-    }
-
+{
+    "name": "Switzerland",
+    "location": "Swiss Confederation",
+    "category": "Luxury & Alpine Tourism",
+    "price": 125000,
+    "duration": "7 Days / 6 Nights",
+    "rating": 5.0,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Zermatt_and_Matterhorn.jpg",
+    "description": "Switzerland is renowned for the Matterhorn, Swiss Alps, Lake Geneva, Interlaken, Lucerne, luxury rail journeys, skiing destinations, and some of the most spectacular mountain scenery in the world."
+}
 ]
 
 # ==========================================================
